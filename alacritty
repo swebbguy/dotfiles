@@ -1,0 +1,27 @@
+background_opacity: 0
+font:
+        normal:
+                family: Courier New
+                style: Regular
+        bold:
+                family: Courier New
+                style: Bold
+        italic:
+                family: Courier New
+                style: Italic
+
+colors:
+        normal:
+                blue: '#0065a4'
+                red: '#b31b1b'
+                yellow: '#ffcb05'
+                green: '#007030'
+                magenta: '#5b3b8c'
+                cyan: '#25a9be'
+        primary:
+                background: '#16161d'
+                foreground: '#a6a6ad'
+
+cursor:
+        style:
+                blinking: on

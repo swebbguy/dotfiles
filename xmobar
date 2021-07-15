@@ -1,0 +1,97 @@
+Config { font = "Courier New:size=12"
+       , additionalFonts = []
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "#000000"
+       , fgColor = "grey"
+       , alpha = 255
+       , position = Top
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "/home/swebb/Pictures/Icons/"
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ 
+			-- WEATHER
+			Run Weather "KJYM" 
+				[
+
+				"-t","<station>: <tempF>F ",
+				"-L","50",
+				"-H","70",
+				"--normal","green",
+                                "--high","red",
+                                "--low","blue"
+
+				] 36000
+				
+			-- NETWORK
+			, Run DynNetwork  
+				[
+				
+				"-t","Down: <rx>kb <> Up: <tx>kb"
+
+				] 10
+			
+			-- CPU USAGE
+			, Run Cpu 
+				[
+
+				"-t","CPU: <total>%",
+                                "-L","50",
+				"-H","75",
+				"-l","green",
+                        	"-n","yellow",
+				"-h","red"
+
+				] 10
+                    
+			-- MEMORY USAGE
+			, Run Memory 
+				[
+
+				"-t","RAM: <usedratio>%"
+
+				] 10
+
+			-- DATE
+			, Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+
+			-- BATTERY
+			, Run Battery 
+				[
+
+				"-t","<acstatus>",
+				"-L","20",
+				"-H","80",
+				"-l","red",
+				"-h","green",
+				"--",
+					"-o","<left>%",
+					"-O","<left>% - Charging"
+				] 50
+			
+			-- DISK USAGE
+			, Run DiskU 
+				[
+
+				("/","HDD:<usedp>%"),
+				("sda2","<usedbar>")
+
+				][
+
+				"-L","20","-H","50","-m","1","-p","3"
+
+				] 20
+                      
+                        , Run StdinReader
+                    ]
+
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %cpu% | %memory% | %disku% | %dynnetwork% | %battery% | <fc=#ee9a00>%date%</fc> | %KJYM%"
+       }
